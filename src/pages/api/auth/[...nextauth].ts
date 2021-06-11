@@ -21,6 +21,8 @@ export default NextAuth({
           q.If(
             q.Not(
               q.Exists(
+                //Case Fold normaliza as letras da string, minuscula e maiuscula
+                //Os indices no FaunaDB auxilia na busca performatica dos dados
                 q.Match(q.Index("user_by_email"), q.Casefold(user.email))
               )
             ),
